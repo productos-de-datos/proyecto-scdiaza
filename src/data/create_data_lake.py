@@ -21,7 +21,7 @@ def create_data_lake():
     #
     
     """
-
+    import os
     #
     os.makedirs(os.path.join("data_lake", "business", "reports", "figures" ), exist_ok=True) 
     os.makedirs(os.path.join("data_lake", "landing" ), exist_ok=True) 
