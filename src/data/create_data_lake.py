@@ -30,7 +30,7 @@ def create_data_lake():
     os.makedirs(os.path.join("data_lake", "business" ), exist_ok=True)
     os.makedirs(os.path.join("data_lake", "business" , "features" ), exist_ok=True)
     os.makedirs(os.path.join("data_lake", "business", "forecasts" ), exist_ok=True)
-    os.chdir(current)
+    
     return(True)
 
     
