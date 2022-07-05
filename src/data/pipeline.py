@@ -9,13 +9,9 @@ Construya un pipeline de Luigi que:
 
 En luigi llame las funciones que ya creo.
 
-
 """
 
-#
 import os
-import pandas as pd
-
 #
 # (navegar a raiz del proyecto)
 #
@@ -23,44 +19,63 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 os.chdir(dir_path)
 os.chdir("..")
 os.chdir("..")
+os.chdir(os.path.join("src", "data"))
+print(os.getcwd())
 
 
+#
 import luigi
+from luigi import Task, LocalTarget
+import os
+import pandas as pd
+#
+from ingest_data import ingest_data
+from transform_data import transform_data
+from  clean_data import clean_data
+from compute_daily_prices import compute_daily_prices
+from compute_monthly_prices import compute_monthly_prices
 
 
-class WritePipelineTask(luigi.Task):
-
+#
+#
+class pipeline_until_clean_data(Task):
+    
     def output(self):
-        return luigi.LocalTarget("data/output_one.txt")
-
+        return LocalTarget(os.path.join("data_lake","cleansed","precios-horarios.csv" ))
     def run(self):
-        with self.output().open("w") as output_file:
-            output_file.write("pipeline")
-
-
-class AddMyTask(luigi.Task):
-
+        ingest_data()
+        transform_data()
+        clean_data()
+#
+#
+class Compute_daily_prices(Task):
+    def requires (self):
+        return pipeline_until_clean_data()
     def output(self):
-        return luigi.LocalTarget("data/output_two.txt")
+        return LocalTarget(os.path.join("data_lake","business","precios-diarios.csv"))
+    def run(self):
+        compute_daily_prices()
+#
+class Compute_monthly_prices(Task):
+    def requires (self):
+        return pipeline_until_clean_data()
+    def output(self):
+        return LocalTarget(os.path.join("data_lake","business","precios-mensuales.csv"))
+    def run(self):
+        compute_monthly_prices()
+
+#
+class Pipeline(Task):
 
     def requires(self):
-        return WritePipelineTask()
+        return [
+            Compute_daily_prices(),
+            Compute_monthly_prices(),
+        ]
 
-    def run(self):
-        with self.input().open("r") as input_file:
-            line = input_file.read()
-
-        with self.output().open("w") as output_file:
-            decorated_line = "My "+line
-            output_file.write(decorated_line)
-            
-            
-
-if __name__ == "__main__":
-
-    raise NotImplementedError("Implementar esta función")
-
+#
+#
 if __name__ == "__main__":
     import doctest
-
+    luigi.run(['Pipeline','--local-scheduler'])
     doctest.testmod()
