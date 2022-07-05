@@ -1,72 +1,51 @@
+
 """
-Módulo de orquestamiento con luigui.
+Módulo de ingestión de datos.
 -------------------------------------------------------------------------------
-"""
-
-
 
 """
-Construya un pipeline de Luigi que:
-* Importe los datos xls
-* Transforme los datos xls a csv
-* Cree la tabla unica de precios horarios.
-* Calcule los precios promedios diarios
-* Calcule los precios promedios mensuales
-En luigi llame las funciones que ya creo.
-"""
-import luigi
-from luigi import Task, LocalTarget
-import os
-import pandas as pd
-from ingest_data import ingest_data
-from transform_data import transform_data
-from clean_data import clean_data
-from compute_monthly_prices import compute_monthly_prices
-from compute_daily_prices import compute_daily_prices
 
-class Ingest_Transform_Clean_Data(Task):
-    def output(self):
-        return LocalTarget("data_lake/cleansed/precios-horarios.csv")
 
-    def run(self):
-        ingest_data()
-        print("ingest_data-----------------OK")
-        transform_data()
-        print("transform_data----------OK")
-        clean_data()
-        print("clean_data-----------OK")
+def ingest_data():
+    """Ingeste los datos externos a la capa landing del data lake.
 
-class compute_daily_prices(Task):
-    def requires (self):
-        return Ingest_Transform_Clean_Data()
+    Del repositorio jdvelasq/datalabs/precio_bolsa_nacional/xls/ descarge los
+    archivos de precios de bolsa nacional en formato xls a la capa landing. La
+    descarga debe realizarse usando únicamente funciones de Python.
 
-    def output(self):
-        return LocalTarget('data_lake/business/precios-diarios.csv')
-
-    def run(self):
-        compute_daily_prices()
-        print("compute_daily_prices------------OK")
-
-class compute_monthly_prices(Task):
-    def requires(self):
-        return Ingest_Transform_Clean_Data()
-
-    def output(self):
-        return LocalTarget('data_lake/business/precios-mensuales.csv')
-
-    def run(self):
-        compute_monthly_prices()
-        print("compute_monthly_prices-------------------OK")
-
-class Pipe_Run_All(Task):
-
-    def requires(self):
-        return [
-            compute_daily_prices(),
-            compute_monthly_prices(),
-        ]
+    """
+    #
+    import os
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    os.chdir(dir_path)
+    os.chdir("..")
+    os.chdir("..")
+    print(os.getcwd())
+    #
+    import requests
+    os.system("pip install  lxml")
+    import lxml.html
+    #
+    html = requests.get("https://github.com/jdvelasq/datalabs/blob/master/datasets/precio_bolsa_nacional/xls/")
+    doc = lxml.html.fromstring(html.content)
+    urls=doc.xpath("//a/text()")
+    print(urls)
+    
+    #
+    os.chdir(os.path.join("data_lake", "landing" )) 
+    for probably_a_url_to_xlsx_file in urls:
+        import re
+        
+        if re.search("xls(.){,1}", probably_a_url_to_xlsx_file):
+            file_url = "https://github.com/jdvelasq/datalabs/blob/master/datasets/precio_bolsa_nacional/xls/{}?raw=true".format(probably_a_url_to_xlsx_file)
+            #print(file_url)
+            
+            #
+            response = requests.get(file_url)
+            open( probably_a_url_to_xlsx_file, "wb").write(response.content)
+#ingest_data()
 
 if __name__ == "__main__":
     import doctest
-    luigi.run(['Pipe_Run_All','--local-scheduler'])
+    ingest_data()
     doctest.testmod()
