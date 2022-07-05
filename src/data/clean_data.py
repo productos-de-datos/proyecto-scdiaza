@@ -62,9 +62,8 @@ def clean_data():
     hourly_data=pd.concat(hourly_dataframes, ignore_index=True)
     hourly_data.to_csv( os.path.join("data_lake","cleansed","precios-horarios.csv"),index=False)
     print("201")
-
+clean_data()
 
 if __name__ == "__main__":
-    import doctest
-    clean_data()
+    import doctest    
     doctest.testmod()
