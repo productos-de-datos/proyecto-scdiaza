@@ -20,10 +20,10 @@ def compute_daily_prices():
     #
     # (navegar a raiz del proyecto)
     #
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    os.chdir(dir_path)
-    os.chdir("..")
-    os.chdir("..")
+    $dir_path = os.path.dirname(os.path.realpath(__file__))
+    #os.chdir(dir_path)
+    #os.chdir("..")
+    #os.chdir("..")
     
     #
     # (leer precios diarios)
