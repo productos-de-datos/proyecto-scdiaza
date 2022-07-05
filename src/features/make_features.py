@@ -15,19 +15,7 @@ def make_features():
     #
     import pandas as pd
     import os
-    
-    #
-    from ingest_data import ingest_data
-    from transform_data import transform_data
-    from clean_data import clean_data
-    from compute_monthly_prices import compute_monthly_prices
-    from compute_daily_prices import compute_daily_prices
-    ingest_data()
-    transform_data()
-    clean_data()
-    compute_monthly_prices()
-    compute_daily_prices()
-    
+
     
     #
     precios_diarios=pd.read_csv(os.path.join("data_lake","business", "precios-diarios.csv"))
