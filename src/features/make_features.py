@@ -17,21 +17,16 @@ def make_features():
     import os
     
     #
-    # (navegar a raiz del proyecto)
-    #
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    os.chdir(dir_path)
-    #
-    os.system("make create_data_lake")
-    os.system("make ingest_data")
-    os.system("make transform_data")
-    os.system("make create_data_lake")
-    os.system("make clean_data")
-    os.system("make compute_daily_prices")
-    os.system("make compute_monthly_prices")
-    #
-    os.chdir("..")
-    os.chdir("..")
+    from ingest_data import ingest_data
+    from transform_data import transform_data
+    from clean_data import clean_data
+    from compute_monthly_prices import compute_monthly_prices
+    from compute_daily_prices import compute_daily_prices
+    ingest_data()
+    transform_data()
+    clean_data()
+    compute_monthly_prices()
+    compute_daily_prices()
     
     
     #
