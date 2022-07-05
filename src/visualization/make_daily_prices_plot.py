@@ -19,6 +19,15 @@ def make_daily_prices_plot():
     #
     dir_path = os.path.dirname(os.path.realpath(__file__))
     os.chdir(dir_path)
+    #
+    os.system("make create_data_lake")
+    os.system("make ingest_data")
+    os.system("make transform_data")
+    os.system("make create_data_lake")
+    os.system("make clean_data")
+    os.system("make compute_daily_prices")
+    os.system("make compute_monthly_prices")
+    #
     os.chdir("..")
     os.chdir("..")
     
