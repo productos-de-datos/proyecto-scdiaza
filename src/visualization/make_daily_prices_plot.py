@@ -39,11 +39,8 @@ def make_daily_prices_plot():
     #plt.tight_layout()
     #
     plt.savefig(os.path.join("data_lake","business","reports","figures","daily_prices.png" ))
-    
-print(make_daily_prices_plot())
-
 
 if __name__ == "__main__":
     import doctest
-
+    make_daily_prices_plot()
     doctest.testmod()
