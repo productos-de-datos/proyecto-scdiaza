@@ -9,7 +9,7 @@
 import os
 import sys
 
-
+#
 def test_01():
     """Califica la creación del data lake"""
     os.system("rm -rf data_lake")
@@ -107,6 +107,13 @@ def test_06():
 
 def test_07():
     """Evalua el pipeline"""
+    os.system("make create_data_lake")
+    os.system("make ingest_data")
+    os.system("make transform_data")
+    os.system("make clean_data")
+    os.system("make compute_daily_prices")
+    os.system("make compute_monthly_prices")
+    os.system("make make_daily_prices_plot")
     os.system("make pipeline")
     assert os.path.isfile("data_lake/business/precios-diarios.csv") is True
     assert os.path.isfile("data_lake/business/precios-mensuales.csv") is True
@@ -114,11 +121,24 @@ def test_07():
 
 def test_08():
     """Evalua figura precios diarios"""
+    os.system("make create_data_lake")
+    os.system("make ingest_data")
+    os.system("make transform_data")
+    os.system("make clean_data")
+    os.system("make compute_daily_prices")
+    os.system("make compute_monthly_prices")
+    os.system("make make_daily_prices_plot")
     assert os.path.isfile("data_lake/business/reports/figures/daily_prices.png") is True
 
 
 def test_09():
     """Evalua figura precios diarios"""
+    os.system("make create_data_lake")
+    os.system("make ingest_data")
+    os.system("make transform_data")
+    os.system("make clean_data")
+    os.system("make compute_daily_prices")
+    os.system("make compute_monthly_prices")
     assert (
         os.path.isfile("data_lake/business/reports/figures/monthly_prices.png") is True
     )
@@ -126,16 +146,38 @@ def test_09():
 
 def test_10():
     """Evalua la creación de características para modelos"""
+    os.system("make create_data_lake")
+    os.system("make ingest_data")
+    os.system("make transform_data")
+    os.system("make clean_data")
+    os.system("make compute_daily_prices")
+    
+    os.system("make make_features")
     assert os.path.isfile("data_lake/business/features/precios_diarios.csv") is True
 
 
 def test_11():
     """Modelo creado"""
-    assert os.path.isfile("modeles/precios-diarios.pkl") is True
+    os.system("make create_data_lake")
+    os.system("make ingest_data")
+    os.system("make transform_data")
+    os.system("make clean_data")
+    os.system("make compute_daily_prices")
+    os.system("make make_features")
+    os.system("make train_model")
+    assert os.path.isfile("src/models/precios-diarios.pkl") is True
 
 
 def test_12():
     """Pronosticos"""
+    os.system("make create_data_lake")
+    os.system("make ingest_data")
+    os.system("make transform_data")
+    os.system("make clean_data")
+    os.system("make compute_daily_prices")
+    os.system("make make_features")
+    os.system("make train_model")
+    os.system("make make_forecasts")
     assert os.path.isfile("data_lake/business/forecasts/precios-diarios.csv") is True
 
 
@@ -154,4 +196,7 @@ test = {
     "12": test_12,
 }[sys.argv[1]]
 
-test()
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+    test()

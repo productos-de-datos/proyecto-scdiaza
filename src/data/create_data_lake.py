@@ -18,13 +18,23 @@ def create_data_lake():
               |___ forecasts/
 
     ```
-
-
+    #
+    
     """
-    raise NotImplementedError("Implementar esta función")
+    import os
+    #
+    os.makedirs(os.path.join("data_lake", "business", "reports", "figures" ), exist_ok=True) 
+    os.makedirs(os.path.join("data_lake", "landing" ), exist_ok=True) 
+    os.makedirs(os.path.join("data_lake", "raw" ), exist_ok=True) 
+    os.makedirs(os.path.join("data_lake", "cleansed" ), exist_ok=True)
+    os.makedirs(os.path.join("data_lake", "business" ), exist_ok=True)
+    os.makedirs(os.path.join("data_lake", "business" , "features" ), exist_ok=True)
+    os.makedirs(os.path.join("data_lake", "business", "forecasts" ), exist_ok=True)
+    
+    return(True)
 
-
+    
 if __name__ == "__main__":
     import doctest
-
+    create_data_lake()
     doctest.testmod()

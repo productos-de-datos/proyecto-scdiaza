@@ -12,10 +12,27 @@ def make_features():
     analizar y determinar las variables explicativas del modelo.
 
     """
-    raise NotImplementedError("Implementar esta función")
+    #
+    import pandas as pd
+    import os
+
+    
+    #
+    precios_diarios=pd.read_csv(os.path.join("data_lake","business", "precios-diarios.csv"))
+    #
+    precios_diarios['fecha'] = pd.to_datetime(precios_diarios['fecha'], format='%Y-%m-%d')
+    #
+    precios_diarios['x1'] =precios_diarios.fecha.dt.year
+    precios_diarios['x2'] =precios_diarios.fecha.dt.month
+    precios_diarios['x3'] =precios_diarios.fecha.dt.day
+    precios_diarios['x4'] = precios_diarios.fecha.dt.weekday
+    #df.to_csv('data_lake/business/features/precios_diarios.csv', index=False)
+    #print ("Saved features--->")
+    precios_diarios.to_csv( os.path.join("data_lake","business", "features", "precios-diarios.csv"), index=False)
+    return True
 
 
 if __name__ == "__main__":
     import doctest
-
+    make_features()
     doctest.testmod()
