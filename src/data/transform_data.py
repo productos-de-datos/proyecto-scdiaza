@@ -8,10 +8,11 @@ def transform_data():
 
     """
     #
-    os.system("pip install  openpyxl")
+    
     #
     import os
     import pandas as pd
+    os.system("pip install  openpyxl")
     
     #
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -38,9 +39,9 @@ def transform_data():
         #return(new_df)
         new_file_name=os.path.join("data_lake", "raw", a_file.replace(".xlsx", ".csv"))
         new_df.to_csv(new_file_name, index=False)
-transform_data()
+
 
 if __name__ == "__main__":
     import doctest
-
+    transform_data()
     doctest.testmod()
