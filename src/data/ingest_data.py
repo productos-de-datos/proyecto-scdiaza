@@ -28,7 +28,7 @@ def ingest_data():
     html = requests.get("https://github.com/jdvelasq/datalabs/blob/master/datasets/precio_bolsa_nacional/xls/")
     doc = lxml.html.fromstring(html.content)
     urls=doc.xpath("//a/text()")
-    print(urls)
+    #print(urls)
     
     #
     os.chdir(os.path.join("data_lake", "landing" )) 
@@ -41,7 +41,7 @@ def ingest_data():
             
             #
             response = requests.get(file_url)
-            open( probably_a_url_to_xlsx_file, "wb").write(response.content)
+            open( probably_a_url_to_xlsx_file[:-1], "wb").write(response.content)
 #ingest_data()
 
 if __name__ == "__main__":
