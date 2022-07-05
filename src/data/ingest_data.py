@@ -17,6 +17,7 @@ def ingest_data():
     #
     #
     import requests
+    import os
     os.system("pip install  lxml")
     import lxml.html
     #
