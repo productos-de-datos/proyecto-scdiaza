@@ -13,7 +13,8 @@ def transform_data():
     import os
     import pandas as pd
     os.system("pip install  openpyxl")
-    
+    os.system("pip install  xlrd")
+
     #
     dir_path = os.path.dirname(os.path.realpath(__file__))
     os.chdir(dir_path)
