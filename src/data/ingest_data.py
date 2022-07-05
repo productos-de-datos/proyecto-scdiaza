@@ -35,7 +35,7 @@ def ingest_data():
     for probably_a_url_to_xlsx_file in urls:
         import re
         
-        if re.search("xls.$", probably_a_url_to_xlsx_file):
+        if re.search("xls(.){,1}", probably_a_url_to_xlsx_file):
             file_url = "https://github.com/jdvelasq/datalabs/blob/master/datasets/precio_bolsa_nacional/xls/{}?raw=true".format(probably_a_url_to_xlsx_file)
             #print(file_url)
             
