@@ -8,6 +8,8 @@ def transform_data():
 
     """
     #
+    os.system("pip install  openpyxl")
+    #
     import os
     import pandas as pd
     
