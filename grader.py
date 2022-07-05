@@ -107,6 +107,13 @@ def test_06():
 
 def test_07():
     """Evalua el pipeline"""
+    os.system("make create_data_lake")
+    os.system("make ingest_data")
+    os.system("make transform_data")
+    os.system("make clean_data")
+    os.system("make compute_daily_prices")
+    os.system("make compute_monthly_prices")
+    os.system("make make_daily_prices_plot")
     os.system("make pipeline")
     assert os.path.isfile("data_lake/business/precios-diarios.csv") is True
     assert os.path.isfile("data_lake/business/precios-mensuales.csv") is True
