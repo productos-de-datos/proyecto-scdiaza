@@ -38,7 +38,7 @@ def transform_data():
         new_df=new_df[schema_cols]
         new_df.columns=[c.lower() for c in new_df.columns]
         #return(new_df)
-        new_file_name=os.path.join("data_lake", "raw", a_file.replace(".xlsx", ".csv"))
+        new_file_name=os.path.join("data_lake", "raw", a_file.replace(".xlsx", ".csv").replace(".xls", ".csv"))
         new_df.to_csv(new_file_name, index=False)
 
 
