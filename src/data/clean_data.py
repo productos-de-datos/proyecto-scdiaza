@@ -19,10 +19,10 @@ def clean_data():
     #
     # (navegar a raiz del proyecto)
     #
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    os.chdir(dir_path)
-    os.chdir("..")
-    os.chdir("..")
+    #dir_path = os.path.dirname(os.path.realpath(__file__))
+    #os.chdir(dir_path)
+    #os.chdir("..")
+    #os.chdir("..")
     
     #
     # (enumerar archivos anuales)
@@ -61,7 +61,7 @@ def clean_data():
     #
     hourly_data=pd.concat(hourly_dataframes, ignore_index=True)
     hourly_data.to_csv( os.path.join("data_lake","cleansed","precios-horarios.csv"),index=False)
-   return True
+    return True
 
 
 if __name__ == "__main__":
