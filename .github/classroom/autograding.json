@@ -123,7 +123,7 @@
     {
       "name": "Test 13",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "pylint",
+      "run": "python3 src/data/create_data_lake.py| python3 src/data/ingest_data.py| python3 src/data/transform_data.py| python3 src/data/clean_data.py| python3 src/data/compute_daily_prices.py|python3 src/features/make_features.py|python3 src/models/train_daily_model.py|python3 src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -133,7 +133,7 @@
     {
       "name": "Test 14",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "pytest",
+       "run": "python3 src/data/create_data_lake.py| python3 src/data/ingest_data.py| python3 src/data/transform_data.py| python3 src/data/clean_data.py| python3 src/data/compute_daily_prices.py|python3 src/features/make_features.py|python3 src/models/train_daily_model.py|python3 src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -143,7 +143,7 @@
     {
       "name": "Test 15",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "python3 src/data/clean_data.py",
+       "run": "python3 src/data/create_data_lake.py| python3 src/data/ingest_data.py| python3 src/data/transform_data.py| python3 src/data/clean_data.py| python3 src/data/compute_daily_prices.py|python3 src/features/make_features.py|python3 src/models/train_daily_model.py|python3 src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -153,7 +153,7 @@
     {
       "name": "Test 16",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "python3 src/data/compute_daily_prices.py",
+       "run": "python3 src/data/create_data_lake.py| python3 src/data/ingest_data.py| python3 src/data/transform_data.py| python3 src/data/clean_data.py| python3 src/data/compute_daily_prices.py|python3 src/features/make_features.py|python3 src/models/train_daily_model.py|python3 src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -163,7 +163,7 @@
     {
       "name": "Test 17",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "python3 src/data/compute_monthly_prices.py",
+       "run": "python3 src/data/create_data_lake.py| python3 src/data/ingest_data.py| python3 src/data/transform_data.py| python3 src/data/clean_data.py| python3 src/data/compute_daily_prices.py|python3 src/features/make_features.py|python3 src/models/train_daily_model.py|python3 src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -173,7 +173,7 @@
     {
       "name": "Test 18",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "python3 src/data/create_data_lake.py",
+       "run": "python3 src/data/create_data_lake.py| python3 src/data/ingest_data.py| python3 src/data/transform_data.py| python3 src/data/clean_data.py| python3 src/data/compute_daily_prices.py|python3 src/features/make_features.py|python3 src/models/train_daily_model.py|python3 src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -183,7 +183,7 @@
     {
       "name": "Test 19",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "python3 src/data/ingest_data.py",
+       "run": "python3 src/data/create_data_lake.py| python3 src/data/ingest_data.py| python3 src/data/transform_data.py| python3 src/data/clean_data.py| python3 src/data/compute_daily_prices.py|python3 src/features/make_features.py|python3 src/models/train_daily_model.py|python3 src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -193,7 +193,7 @@
     {
       "name": "Test 20",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "python3 src/data/pipeline.py",
+       "run": "python3 src/data/create_data_lake.py| python3 src/data/ingest_data.py| python3 src/data/transform_data.py| python3 src/data/clean_data.py| python3 src/data/compute_daily_prices.py|python3 src/features/make_features.py|python3 src/models/train_daily_model.py|python3 src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -203,7 +203,7 @@
     {
       "name": "Test 21",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "python3 src/data/transform_data.py",
+       "run": "python3 src/data/create_data_lake.py| python3 src/data/ingest_data.py| python3 src/data/transform_data.py| python3 src/data/clean_data.py| python3 src/data/compute_daily_prices.py|python3 src/features/make_features.py|python3 src/models/train_daily_model.py|python3 src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -213,7 +213,7 @@
     {
       "name": "Test 22",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "python3 src/features/make_features.py",
+       "run": "python3 src/data/create_data_lake.py| python3 src/data/ingest_data.py| python3 src/data/transform_data.py| python3 src/data/clean_data.py| python3 src/data/compute_daily_prices.py|python3 src/features/make_features.py|python3 src/models/train_daily_model.py|python3 src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -223,7 +223,7 @@
     {
       "name": "Test 23",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "python3 src/models/make_forecasts.py",
+       "run": "python3 src/data/create_data_lake.py| python3 src/data/ingest_data.py| python3 src/data/transform_data.py| python3 src/data/clean_data.py| python3 src/data/compute_daily_prices.py|python3 src/features/make_features.py|python3 src/models/train_daily_model.py|python3 src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -233,7 +233,7 @@
     {
       "name": "Test 24",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "python3 src/models/train_daily_data.py",
+       "run": "python3 src/data/create_data_lake.py| python3 src/data/ingest_data.py| python3 src/data/transform_data.py| python3 src/data/clean_data.py| python3 src/data/compute_daily_prices.py|python3 src/features/make_features.py|python3 src/models/train_daily_model.py|python3 src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -243,7 +243,7 @@
     {
       "name": "Test 25",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "python3 src/visualization/make_daily_prices_plot.py",
+       "run": "python3 src/data/create_data_lake.py| python3 src/data/ingest_data.py| python3 src/data/transform_data.py| python3 src/data/clean_data.py| python3 src/data/compute_daily_prices.py|python3 src/features/make_features.py|python3 src/models/train_daily_model.py|python3 src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
