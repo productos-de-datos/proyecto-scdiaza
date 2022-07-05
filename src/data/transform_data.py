@@ -16,10 +16,10 @@ def transform_data():
     os.system("pip install  xlrd")
 
     #
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    os.chdir(dir_path)
-    os.chdir("..")
-    os.chdir("..")
+    #dir_path = os.path.dirname(os.path.realpath(__file__))
+    #os.chdir(dir_path)
+    #os.chdir("..")
+    #os.chdir("..")
     _,_,files=list(os.walk(os.path.join("data_lake", "landing" )))[0]
     
     #
